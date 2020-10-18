@@ -1,0 +1,71 @@
+@import './_vars.scss';
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'Noto Sans HK', sans-serif;
+    -webkit-font-smoothin: antialiased;
+    -moz-osx-font-smoothing: grayscaled;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.6;
+}
+
+main {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    color: $prim-color;
+    background-color: $bg-color;
+}
+
+a,
+input,
+textarea,
+button {
+    outline: none;
+    text-decoration: none;
+    font-family: inherit;
+
+    :focus {
+        outline: none;
+    }
+}
+
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
