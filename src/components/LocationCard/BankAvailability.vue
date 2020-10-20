@@ -2,11 +2,11 @@
     <div class="bank-availability-wrapper">
         <div class="bank">
             <span>Lo</span>
-            <span class="available-mark red"/>
+            <span class="available-mark" :class="leftBankClass"/>
         </div >
         <div class="bank">
             <span>Ro</span>
-            <span class="available-mark green"/>
+            <span class="available-mark" :class="rightBankClass"/>
         </div>
     </div>
 </template>
@@ -14,6 +14,22 @@
 <script>
 export default {
   props: {
+    leftBankInfo: {
+        type: Object,
+        required: true
+    },
+    rightBankInfo: {
+        type: Object,
+        required: true
+    }
+  },
+  computed: {
+     leftBankClass() {
+        return this.leftBankInfo.services[0].state.name === 'Actief' ? 'green' : 'red';
+     },
+     rightBankClass() {
+        return this.rightBankInfo.services[0].state.name === 'Actief' ? 'green' : 'red';
+     } 
   }
 }
 </script>
