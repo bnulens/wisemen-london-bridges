@@ -3,15 +3,19 @@
         <section class="location-card" @click="toggleView" :class="view" >
            <div v-if="loaded" class="location-card-content"> 
                <div class="location-card-content-head">
-                   <h2>{{ connectionToShow.name }}</h2>
-                   <div class="location-card-content-head-info">
-                        <img src="@/assets/icons/warning.svg"/>
-                        <img src="@/assets/icons/info.svg"/>
-                        <button>X</button>
-                   </div>
+                    <h2>{{ connectionToShow.name }}</h2>
+                    <div class="location-card-content-head-info">
+                            <img src="@/assets/icons/warning.svg"/>
+                            <img src="@/assets/icons/info.svg"/>
+                            <button class="head-info-toggle-size">{{ this.view === 'collapsed' ? '&wedge;' : '&vee;'  }}</button>
+                    </div>
+               </div>
+               <div class="location-card-content-body">
+                    <LiftIconInfo/>
+                    <EscalatorIconInfo/>
                </div>
                <div class="accessibility-icons">
-                   <h3>Toegankelijkheid</h3>
+                   <h3 class="location-card-content-subtitle">Toegankelijkheid</h3>
                    <div class="accessibility-icons-wrapper">
                        <span v-for="item in connectionToShow.accessibility" :key="item.id">
                            <img :src="getIcon(item)" alt="accessibility-icon"/>
@@ -26,7 +30,14 @@
 
 <script>
 import axios from 'axios'
+import LiftIconInfo from './LiftIconInfo'
+import EscalatorIconInfo from './EscalatorIconInfo'
+
 export default {
+    components: {
+        LiftIconInfo,
+        EscalatorIconInfo
+    },
     props: {
         connection: {
             type: String,
@@ -51,9 +62,16 @@ export default {
     computed: {
         connectionToShow() {
             const filteredArray = this.connections.filter(c => c.name === this.connection)
-            console.log(filteredArray[0])
             return filteredArray[0]
-        }
+        },
+        leftBankInfo() {
+            const filteredBanks = this.connectionToShow.connection_ends.filter(c => c.shore.short_name === 'LO');
+            return filteredBanks[0]
+        },
+        rightBankInfo() {
+            const filteredBanks = this.connectionToShow.connection_ends.filter(c => c.shore.short_name === 'RO');
+            return filteredBanks[0]
+        },  
     },
     methods: {
         toggleView() {
@@ -101,13 +119,24 @@ export default {
                 h2 {
                     color: $sec-color;
                 }
-                span {
-                    display: inline-block;
+                .location-card-content-head-info {
+                    display: flex;
+                    align-items: center;
                 }
-
+                .head-info-toggle-size {
+                    display: block;
+                    margin-left: 12px;
+                    font-size: 20px;
+                    color: rgb(68, 68, 68);
+                    background-color: transparent;
+                }
                 @media screen and (min-width: 768px) {
                     height: 20vh;
                 }
+            }
+
+            .location-card-content-body {
+                margin: 12px 0px;
             }
 
             .accessibility-icons {

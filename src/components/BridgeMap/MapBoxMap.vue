@@ -21,7 +21,7 @@ import 'mapbox-gl-leaflet'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import 'leaflet/dist/leaflet.css'
 
-import LocationCard from './LocationCard'
+import LocationCard from '../LocationCard/LocationCard'
 
 window.mapboxgl = mapboxgl
 
