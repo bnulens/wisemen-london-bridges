@@ -1,39 +1,41 @@
 <template>
-    <ul>
-        <!-- <li v-for="article in articles" :key="article.id">{{ article.title }}</li>    -->
-        <NewsArticleSmall v-for="article in articles" :key="article.id" v-bind:article="article"/>
-    </ul>
+   <div>
+        <ul class="news-article-list">
+            <NewsArticleSmall v-for="article in articles" :key="article.id" :article="article"/>
+        </ul>
+   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import NewsArticleSmall from './NewsArticleSmall'
-// import NewsArticleDetail from './NewsArticleDetail'
 
 export default {
     components: {
         NewsArticleSmall,
-        // NewsArticleDetail
     },
     data() {
         return {
-            articles: []
+            articles: [],
         }
     },
     mounted() {
         axios
             .get('https://awv-fietsverbindingen.development.appwi.se/api/news')
             .then( res => (this.articles = res.data))
-    }
+    },
 
 }
 </script>
-
 <style lang="scss" scoped>
-  @import '@/assets/scss/_vars.scss';
-
-  ul {
-      height: 100%;
-      overflow: scroll;
-  }
+    .news-article-list {
+        position: absolute;
+        z-index: 550;
+        
+        @media screen and (min-width: 768px) {
+            height: 100vh;
+            max-width: 25%;
+            overflow: scroll;
+        }
+    }
 </style>
