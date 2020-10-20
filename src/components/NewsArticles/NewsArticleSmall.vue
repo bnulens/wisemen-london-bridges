@@ -19,11 +19,11 @@ export default {
     article: { type: Object, required: true }
   },
   methods: {
-    getDate: (str) => {
+    getDate(str) {
       const newDate = new Date(str);
       const readDate = newDate.toLocaleDateString("en-GB", {weekday: 'short',day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute:'2-digit'});
       return readDate;
-    }
+    },
   }
 }
 
@@ -38,7 +38,7 @@ export default {
     height: 149px;
     width: 100%;
     padding-left: 15px;
-    overflow: hidden;
+    background-color: $bg-color;
 
     &:before {
       content: "";
