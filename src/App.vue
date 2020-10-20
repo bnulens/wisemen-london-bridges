@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderComponent :view="view" @onClickNews="view = 'news'" @onClickBack="view = 'bridges'"/>
+    <HeaderComponent :view="view" @news="view = 'news'" @back="view = 'bridges'"/>
     <MainComponent :view="view" /> 
   </div>
 </template>
