@@ -31,11 +31,13 @@ export default {
     .news-article-list {
         position: absolute;
         z-index: 550;
+        transition: all ease-in 0.6s;
         
         @media screen and (min-width: 768px) {
             height: 100vh;
             max-width: 25%;
             overflow: scroll;
+            transition: all ease-in 0.6s;
         }
     }
 </style>

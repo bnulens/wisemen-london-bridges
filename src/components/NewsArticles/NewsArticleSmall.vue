@@ -1,7 +1,7 @@
 <template>
   <li class="news-article-list-item">
     <article class="news-article-small">
-      <img :src="`https://awv-fietsverbindingen.development.appwi.se${article.image_url}`" alt="x"/>
+      <img :src="`https://awv-fietsverbindingen.development.appwi.se${article.image_url}`" alt="article-image"/>
       <div class="news-article-small-info">
         <h3>{{ article.title }}</h3>
         <time :datetime="getDate(article.created_at)">{{ getDate(article.created_at) }}</time>
