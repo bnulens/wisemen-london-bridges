@@ -1,10 +1,10 @@
 <template>
     <div class="lift-icon-wrapper">
         <div class="lift-icon-head">
-            <img src="@/assets/icons/lift.svg"/>
+            <img src="@/assets/icons/lift.svg" alt="lift-image"/>
             <h3>Liften</h3>
         </div>
-        <BankAvailability/>
+        <BankAvailability :leftBankInfo="leftBankInfo" :rightBankInfo="rightBankInfo"/>
     </div>
 </template>
 
@@ -15,6 +15,14 @@ export default {
         BankAvailability
     },
     props: {
+        leftBankInfo: {
+            type: Object,
+            required: true
+        },
+        rightBankInfo: {
+            type: Object,
+            required: true
+        }
     }
 }
 </script>
@@ -30,11 +38,18 @@ export default {
     .lift-icon-head {
         display: flex;
         align-items: center;
+
+        img {
+            display: inline-block;
+            height: 27;
+            width: 25;
+        }
+
         h3 {
             display: inline-block;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 100;
-            margin-left: 6px;
+            margin-left: 14px;
         }
     }
   }
