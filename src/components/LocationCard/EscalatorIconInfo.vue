@@ -1,10 +1,10 @@
 <template>
     <div class="escalator-icon-wrapper">
         <div class="escalator-icon-head">
-            <img src="@/assets/icons/roltrap.svg"/>
+            <img src="@/assets/icons/roltrap.svg" alt="escalator-image"/>
             <h3>Roltrappen</h3>
         </div>
-        <BankAvailability/>
+        <BankAvailability :leftBankInfo="leftBankInfo" :rightBankInfo="rightBankInfo"/>
     </div>
 </template>
 
@@ -16,6 +16,14 @@ export default {
     BankAvailability
   },
   props: {
+    leftBankInfo: {
+      type: Object,
+      required: true
+    },
+    rightBankInfo: {
+      type: Object,
+      required: true
+    }
   }
 }
 </script>
@@ -30,11 +38,18 @@ export default {
     .escalator-icon-head {
         display: flex;
         align-items: center;
+
+        img {
+          display: inline-block;
+          height: 27;
+          width: 25;
+        }
+
         h3 {
-            display: inline-block;
-            font-size: 20px;
-            font-weight: 100;
-            margin-left: 6px;
+          display: inline-block;
+          font-size: 16px;
+          font-weight: 100;
+          margin-left: 12px;
         }
     }
   }
