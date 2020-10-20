@@ -1,16 +1,18 @@
 <template>
   <header>
     <div v-if="view === 'bridges'" class="bridge-header">
-      <div  class="bridge-title-heading">
-        <img class="app-logo" src="@/assets/icons/bridge.svg" alt="bridge-logo"/>
-        <h1>Bridges</h1>
-        <h2>London</h2>
+      <div  class="bridge-title">
+        <img src="@/assets/icons/bridge.svg" alt="bridge-logo"/>
+        <div class="bridge-title-heading">
+          <h1>Bridges</h1>
+          <h2>London</h2>
+        </div>
       </div>
       <button @click="onClickNews" class="message-newsfeed"><img class="message-icon" src="@/assets/icons/message.svg" alt="message-newsfeed"></button>
     </div>
     <div v-if="view === 'news'" class="news-header">
       <div  class="title-heading">
-        <button @click="onClickBack" class="back-button" >&lt; Vorige</button>
+        <button @click="onClickBack" class="back-button" >&lsaquo; Vorige</button>
         <h1>Nieuwsberichten</h1>
       </div>
     </div>
@@ -27,12 +29,10 @@ export default {
   },
   methods: {
     onClickNews() {
-      console.log('clicked')
-      this.$emit('onClickNews')
+      this.$emit('news')
     },
     onClickBack() {
-      console.log('back')
-      this.$emit('onClickBack')
+      this.$emit('back')
     }
   }
 }
@@ -42,41 +42,66 @@ export default {
   @import '@/assets/scss/_vars.scss';
 
   .bridge-header {
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    top: 0;
     height: 150px;
     width: 100%;
     padding: 0 16px;
     background-color: $bg-color;
-    border-bottom: 1px dotted $warning-color;
+    z-index: 1001;
 
-    .bridge-title-heading {
+    .bridge-title {
       margin-top: 40px;
 
-      .app-logo {
+      img {
         display: block;
-        width: 60px;
-
-        @media screen and (max-width: 767px) {
+        width: 45%;
+        max-width: 300px;
+        
+        @media screen and (max-width: 768px) {
           display: none;
         }
       }
       
-      h1 {
-        color: $sec-color;
-        font-size: 34px;
-        font-weight: 700;
+      .bridge-title-heading {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+          color: $sec-color;
+          font-size: 34px;
+          font-weight: 700;
+        }
+  
+        h2 {
+          color: $text-color;
+          font-size: 24px;
+          font-weight: 400;
+        }
       }
 
-      h2 {
-        color: $text-color;
-        font-size: 24px;
-        font-weight: 400;
-      }
-
-      @media screen and (max-width: 767px) {
+      @media screen and (min-width: 768px) {
+        display: flex;
+        align-items: center;
+        margin-top: 0;
+        line-height: 1.2;
         
+        img {
+          margin-right: 12px;
+        }
+        .bridge-title-heading {
+
+          h1 {
+            font-size: 18px;
+          }
+  
+          h2 {
+            font-size: 14px;
+          }
+        }
       }
     }
 
@@ -96,18 +121,28 @@ export default {
         width: 27px;
         top: 15px;
         left: 11px;
-        // transform: translate(-50%, -50%);
+      }
+    }
+    @media screen and (min-width: 768px) {
+      position: relative;
+      align-items: center;
+      height: 105px;
+
+      .message-newsfeed {
+        display: none;
       }
     }
   }
 
   .news-header {
+    position: absolute;
+    top: 0;
     height: 150px;
     width: 100%;
     padding: 0 16px;
     background-color: $bg-color;
-    border-bottom: 1px dotted $warning-color;
     padding-top: 50px;
+    z-index: 1001;
 
     h1 {
       color: $sec-color;
