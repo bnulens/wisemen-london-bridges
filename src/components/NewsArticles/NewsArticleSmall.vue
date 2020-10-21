@@ -9,11 +9,13 @@
           <p>{{article.description}}</p>
         </div>
       </div>
+      <button @click="toggleDetail()" class="toggle-detail">&gt;</button>
     </article>
   </li>
 </template>
 
 <script>
+
 export default {
   props: {
     article: { type: Object, required: true }
@@ -24,9 +26,11 @@ export default {
       const readDate = newDate.toLocaleDateString("en-GB", {weekday: 'short',day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute:'2-digit'});
       return readDate;
     },
+    toggleDetail() {
+      console.log('Toggled')
+    }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -35,42 +39,41 @@ export default {
   .news-article-list-item {
     display: block;
     position: relative;
-    height: 149px;
-    width: 100%;
     padding-left: 15px;
     background-color: $bg-color;
 
-    &:before {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 3px;
-      left: 0;
-      height: 96%;
-      width: 4px;
-      background-color: $sec-color;
-      border-radius: 25px;
+    @media screen and (max-width: 768px) {
+
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 3px;
+        left: 0;
+        height: 96%;
+        width: 4px;
+        background-color: $sec-color;
+        border-radius: 25px;
+      }
     }
 
     .news-article-small {
       display: flex;
       align-items: center;
-      height: 100%;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      justify-content: space-between;
+      padding: 10px 0;
       border-bottom: 1px solid $text-color;
 
       img {
         display: block;
         height: 117px;
         width: 87px;
-        margin-right: 13px;
+        margin-right: 4px;
         border-radius: 3px;
       }
 
       .news-article-small-info {
         width: 70%;
-        height: 100%;
         padding-right: 15px;
         font-weight: 100;
         text-align: justify;
@@ -94,16 +97,25 @@ export default {
         .news-article-small-info-description {
           display: -webkit-box;
           margin-top: 12px;
-          -webkit-line-clamp: 3;
+          -webkit-line-clamp: 4;
           -webkit-box-orient: vertical; 
           overflow: hidden;
           text-overflow: ellipsis;
+
           p {
             font-size: 15px;
             color: $text-color;
             line-height: 1.2;
           }
         }
+      }
+
+      button.toggle-detail {
+        margin: 0 8px;
+        color: $sec-color;
+        font-size: 20px;
+        background-color: transparent;
+        border: none;
       }
     }
   }
