@@ -91,8 +91,11 @@ export default {
   @import '@/assets/scss/_vars.scss';
 
   .location-card-wrapper {
-    position: relative;
-    height: 100vh;
+    position: absolute;
+    bottom: 0;
+    height: auto;
+    min-height: 25%;
+    width: 100%;
     z-index: 550;
 
     .location-card {
@@ -170,47 +173,53 @@ export default {
 
         @media screen and (min-width: 768px) {
             position: absolute;
-            top: 5%;
-            left: 65%;
-            display: flex;
-            align-items: center;
+            top: 5vh;
+            left: 60%;
+            right: 40%;
             height: 64px;
+            width: 375px;
             border-radius: 20px;
         }
     }
 
     .location-card.expanded {
         bottom: 0;
+        height: 75vh;
         padding-top: 13px;
         transition: all ease 0.4s;
 
         @media screen and (min-width: 768px) {
-            align-items: flex-start;
             height: 480px;
             padding-top: 13px;
             transition: all ease 0.4s;
         }
     }
+
     .location-card.collapsed {
         bottom: -320px;
         padding-top: 13px;
         transition: all ease 0.4s;
-
-        .location-card-content-body {
-            display: block;
-        }
+        overflow: hidden;
 
         @media screen and (min-width: 768px) {
-            align-items: flex-start;
             height: 64px;
+            width: 375px;
             padding-top: 13px;
             transition: all ease 0.4s;
 
             .location-card-content-body {
-                display: none;;
+                display: none;
             }
-
         }
+    }
+
+    @media screen and (min-width: 768px) {
+        position: relative;
+        top: 5vh;
+        right: -40vw;
+        height: 10vh;
+        width: 100%;
+        z-index: 1100;
     }
 
   }
