@@ -1,7 +1,7 @@
 <template>
   <main>
     <NewsArticleList :class="isBridgeView ? 'show-news' : 'hide-news'"/>
-    <MapBoxMap/>
+    <MapBoxMap :class="isBridgeView ? 'show-map' : 'hide-map'"/>
   </main>
 </template>
 
@@ -32,12 +32,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .show-news {
-    transition: all ease-in 0.6s;
-
-    @media screen and (max-width: 768px) {
-      display: none;
+  main {
+    .show-news {
+      display: block;
       transition: all ease-in 0.6s;
+  
+      @media screen and (max-width: 768px) {
+        display: none;
+        transition: all ease-in 0.6s;
+      }
+    }
+    .hide-news {
+      display: block;
+      transition: all ease-in 0.6s;
+    }
+    .show-map {
+      display: block;
+    }
+    .hide-map {
+      display: none;
     }
   }
 </style>
